@@ -1,0 +1,63 @@
+﻿@using WebApplication2.Models;
+@using Kulturno_sportski_centar.Areas.ModulKorisnik.Models;
+@using Kulturno_sportski_centar.Helper;
+@{
+    // Layout = null;
+
+    ViewBag.Title = "Korisnik";
+}
+
+<h2>Prikaz korisnika</h2>
+
+@model Kulturno_sportski_centar.Areas.ModulKorisnik.Models.KorisnikPrikaziViewModel
+
+<form>
+    @Html.DropDownListFor(model => model.UlogaNaSistemuId, Model.ListaUloga, new { @class = "btn btn-secondary dropdown-toggle" })
+    <input type="submit" value="Odaberi" class="btn btn-default" />
+</form>
+
+<table class="table table-bordered table-hover " style="text-align:center">
+    <thead>
+        <tr>
+            <td>Id</td>
+            <td>Ime</td>
+            <td>Prezime</td>
+            <td>Korisnicko ime</td>
+            <td>Uloga</td>
+
+            <td>Akcija</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (KorisnikPrikaziViewModel.KorisnikInfo a in Model.Korisnici)
+        {
+            <tr>
+
+                <td>@a.Id</td>
+                <td>@a.Ime</td>
+                <td>@a.Prezime</td>
+                <td>@a.KorisnickoIme</td>
+
+                <td>@a.UlogaNaSistemu</td>
+
+                @if (Autentifikacija.KorisnikSesija.UlogaNaSistemuId==1)
+                {
+                    <td>
+                        <a href="~/ModulKorisnik/Korisnik/Detalji/?Id=@a.Id" class="btn btn-info">Detaljno</a>
+                        <a href="~/ModulKorisnik/Korisnik/Uredi/?Id=@a.Id" class="btn btn-primary">Uredi</a>
+                        @if (a.Id != Autentifikacija.KorisnikSesija.Id)
+                        {
+                        <a href="~/ModulKorisnik/Korisnik/Obrisi/?Id=@a.Id" class="btn btn-danger">Obrisi</a>
+                        }
+                    </td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>
+
+@if (Autentifikacija.KorisnikSesija.UlogaNaSistemuId == 1)
+{
+    <a href="~/ModulKorisnik/Korisnik/Dodaj" class="btn  btn-info">Dodaj Korisnika</a>
+    <a href="/ModulAdministrator/Uposlenik/Prikazi" class="btn btn-info">Uposlenici</a>
+}

@@ -1,0 +1,78 @@
+﻿@using Kulturno_sportski_centar.Helper
+@using Kulturno_sportski_centar.Models
+@{
+    //Layout = null;
+    ViewBag.Title = "Dogadjaji";
+}
+
+@model Kulturno_sportski_centar.Areas.ModulZaposlenik.Models.PrikaziDogadjajeVM
+
+<div>
+
+    <h1 class="card-title">Događaji</h1>
+    <table class="table table-striped">
+
+        <thead>
+            <tr>
+                <td>Događaj</td>
+                <td>Datum održavanja</td>
+                <td>Vrijeme održavanja</td>
+                <td>Sala</td>
+                <td>Cijena ulaza</td>
+                <td>Broj sjedišta</td>
+                @if (Autentifikacija.KorisnikSesija.UlogaNaSistemuId == 1)
+                {
+                    <td>Organizator</td>
+                }
+                <td>Akcija</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var d in Model.Dogadjaji)
+            {
+                <tr>
+
+                    <td>@d.VrstaDogadjaja</td>
+                    <td>@d.Datum.ToShortDateString()</td>
+                    <td>@d.Datum.Hour.ToString() : @d.Datum.Minute.ToString()</td>
+                    <td>@d.NazivSale</td>
+                    <td>@d.CijenaUlaza KM</td>
+                    <td>@d.BrojSjedista</td>
+                    @if (Autentifikacija.KorisnikSesija.UlogaNaSistemuId == 1)
+                    {
+                        <td>@d.Organizator</td>
+                    }
+                    <td>
+                        @if (Autentifikacija.KorisnikSesija.UlogaNaSistemuId == 1)
+                        {
+                            <a href="/ModulZaposlenik/Dogadjaj/Uredi?DogadjajId=@d.DogadjajId" class="btn btn-info">Uredi</a>
+                            <a href="/ModulZaposlenik/Dogadjaj/Obrisi?DogadjajId=@d.DogadjajId" class="btn btn-danger">Obriši</a>
+                        }
+
+                        @if (d.BrojSjedista > 0 && d.Datum<=DateTime.Now)
+                        {
+                            <a href="/ModulKorisnik/RezervacijaZaDogadjaj/Dodaj?DogadjajId=@d.DogadjajId" class="btn btn-dark">Rezerviši kartu</a>
+                        }
+                        else
+                        {
+                            <label>Nema više mjesta!</label>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    @if (Autentifikacija.KorisnikSesija.UlogaNaSistemuId == 1)
+    {
+        <div>
+            <a href="/ModulZaposlenik/Termin/Prikazi" class="btn btn-light">Novi događaj?</a>
+            <a href="/ModulZaposlenik/VrstaDogadjaja/Prikazi" class="btn btn-light">Vrste događaja</a>
+        </div>
+    }
+    <div>
+        <a href="/ModulZaposlenik/Dogadjaj/MojiDogadjaji" class="btn btn-outline-dark">Moji događaji</a>
+    </div>
+
+</div>
+

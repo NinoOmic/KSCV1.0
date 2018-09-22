@@ -1,0 +1,160 @@
+﻿@using Kulturno_sportski_centar.Helper;
+@{
+    /**/
+
+    ViewBag.Title = "Početna";
+
+}
+<div class="container-fluid">
+    <div class="main-content">
+        <div class="row">
+            <div class="col-sm-4">
+                <a href="/ModulKorisnik/Korisnik/Detalji/?Id=@Autentifikacija.KorisnikSesija.Id">
+
+                    <div class="tile-title tile-primary">
+
+                        <div class="icon">
+                            <i class="fa fa-id-card fa-5x" aria-hidden="true"></i>
+                        </div>
+
+                        <div class="title">
+                            <h5>@Autentifikacija.KorisnikSesija.Osoba.Ime @Autentifikacija.KorisnikSesija.Osoba.Prezime</h5>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-sm-4">
+
+                <a href="@Url.Action("Index", "Rezervacija", new { Area = "ModulKorisnik"})">
+                    <div class="tile-title tile-primary">
+
+                        <div class="icon">
+                            <i class="fa fa-check fa-5x" aria-hidden="true"></i>
+                        </div>
+
+                        <div class="title">
+                            <h5>Rezervacije</h5>
+                            <p></p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-sm-4">
+
+                <a href="@Url.Action("Prikazi", "Dogadjaj", new { Area = "ModulZaposlenik"})">
+                    <div class="tile-title tile-primary">
+
+                        <div class="icon">
+                            <i class="fa fa-soccer-ball-o fa-5x" aria-hidden="true"></i>
+                        </div>
+
+                        <div class="title">
+                            <h5>Događaji</h5>
+                            <p></p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+
+        <div class="row">
+
+
+            <div class="col-sm-4">
+
+                <a href="@Url.Action("Index", "Lokacija", new { Area = "ModulAdministrator"})">
+                    <div class="tile-title tile-primary">
+
+                        <div class="icon">
+                            <i class="fa fa-globe fa-5x" aria-hidden="true"></i>
+
+                        </div>
+
+                        <div class="title">
+                            <h5>Lokacije</h5>
+
+                        </div>
+                    </div>
+                </a>
+
+            </div>
+            <div class="col-sm-4">
+
+                <a href="/ModulZaposlenik/Sala/Index">
+                    <div class="tile-title tile-primary">
+
+                        <div class="icon">
+                            <i class="fa fa-university fa-5x" aria-hidden="true"></i>
+
+                        </div>
+
+                        <div class="title">
+                            <h5>Sale</h5>
+
+                        </div>
+                    </div>
+                </a>
+
+            </div>
+
+            <div class="col-sm-4">
+
+                <a href="@Url.Action("Index", "Termin", new { Area = "ModulZaposlenik"})">
+                    <div class="tile-title tile-primary">
+
+                        <div class="icon">
+                            <i class="fa fa-calendar fa-5x" aria-hidden="true"></i>
+
+                        </div>
+
+                        <div class="title">
+                            <h5>Termini</h5>
+
+                        </div>
+                    </div>
+                </a>
+
+            </div>
+            <div class="col-sm-4">
+
+                <a href="@Url.Action("Prikazi", "RezervacijaZaDogadjaj", new { Area = "ModulKorisnik"})">
+                    <div class="tile-title tile-primary">
+
+                        <div class="icon">
+                            <i class="fa fa-ticket fa-5x" aria-hidden="true"></i>
+                        </div>
+
+                        <div class="title">
+                            <h5>Vaše rezervacije za događaj</h5>
+                            <p></p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            @if (Autentifikacija.KorisnikSesija.UlogaNaSistemuId == 3)
+            {
+            <div class="col-sm-4">
+
+                <a href="@Url.Action("Prikazi", "Izvjestaj", new { Area = "ModulZaposlenik" })">
+                    <div class="tile-title tile-primary">
+
+                        <div class="icon">
+                            <i class="fa fa-file-archive-o fa-5x" aria-hidden="true"></i>
+                        </div>
+
+                        <div class="title">
+                            <h5>Vaši izvještaji</h5>
+                            <p></p>
+                        </div>
+                    </div>
+                    
+                </a>
+            </div>
+            }
+        </div>
+    </div>
+</div>
+

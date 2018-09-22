@@ -1,0 +1,46 @@
+﻿@using Kulturno_sportski_centar.Helper
+@{
+    //Layout = null;
+    ViewBag.Title = "Rezervacije za događaje";
+}
+@model Kulturno_sportski_centar.Areas.ModulKorisnik.Models.PrikaziKarteVM
+
+<h1 class="card-title">Rezervacije za događaje</h1>
+
+<table class="table table-striped">
+
+    <thead>
+        <tr>
+            <td>Id karte</td>
+            @if (Autentifikacija.KorisnikSesija.UlogaNaSistemuId == 1 || Autentifikacija.KorisnikSesija.UlogaNaSistemuId == 3)
+            {
+                <td>Vlasnik karte</td>
+            }
+            <td>Događaj</td>
+            <td>Cijena</td>
+            <td>Akcija</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var k in Model.Karte)
+        {
+            <tr>
+                <td>@k.Id</td>
+                @if (Autentifikacija.KorisnikSesija.UlogaNaSistemuId == 1 || Autentifikacija.KorisnikSesija.UlogaNaSistemuId == 3)
+                {
+                    <td>@k.Korisnik</td>
+                }
+                <td>@k.Dogadjaj</td>
+                <td>@k.Cijena KM</td>
+                <td>
+                    <a href="/ModulKorisnik/RezervacijaZaDogadjaj/Obrisi?KartaId=@k.Id" class="btn btn-info">Obriši</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+@if (Autentifikacija.KorisnikSesija.UlogaNaSistemuId == 1 || Autentifikacija.KorisnikSesija.UlogaNaSistemuId == 3)
+{
+    <a href="/ModulKorisnik/RezervacijaZaDogadjaj/Prikazi" class="btn btn-info">Vaše karte</a>
+}

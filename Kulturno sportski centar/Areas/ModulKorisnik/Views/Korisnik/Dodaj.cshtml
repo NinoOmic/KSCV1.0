@@ -1,0 +1,102 @@
+﻿@using WebApplication2.Models;
+@using Kulturno_sportski_centar.Models;
+@using Kulturno_sportski_centar.DAL;
+@using Kulturno_sportski_centar.Helper;
+@{
+    //Layout = null;
+
+    ViewBag.Title = "Novi Korisnik";
+    string error = (string)ViewData["error"];
+    string error1 = (string)ViewData["error1"];
+    string error3 = (string)ViewData["error3"];
+    string error2 = (string)ViewData["error2"];
+}
+
+@model Kulturno_sportski_centar.Areas.ModulKorisnik.Models.KorisnikEditViewModel
+<h1>Dodaj</h1>
+
+
+@using (Html.BeginForm("Spremi", "Korisnik"))
+{
+    @Html.HiddenFor(model => model.Id)
+    <div class="form-group">
+        <label>Ime</label>
+        @Html.TextBoxFor(model => model.Ime, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Ime)
+    </div>
+    <div class="form-group">
+        <label>Prezime</label>
+        @Html.TextBoxFor(model => model.Prezime, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Prezime)
+    </div>
+    <div class="form-group">
+        <label>Datum rođenja</label>
+        @Html.TextBoxFor(model => model.DatumRodjenja)
+        @Html.ValidationMessageFor(model => model.DatumRodjenja)
+    </div>
+
+    <div class="form-group">
+        <label>JMBG</label>
+        @Html.TextBoxFor(model => model.JMBG, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.JMBG)
+    </div>
+    <div class="form-group">
+        <label>Korisncko ime</label>
+        @Html.TextBoxFor(model => model.KorisnckoIme, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.KorisnckoIme)
+        @if (error != null)
+        {
+        <label class="text-danger">@error</label>
+        }
+    </div>
+    <div class="form-group">
+        <label>Lozinka</label>
+        @Html.PasswordFor(model => model.Lozinka, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Lozinka)
+    </div>
+    <div class="form-group">
+        <label>Email</label>
+        @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Email)
+        @if (error1 != null)
+        {
+            <label class="text-danger">@error1</label>
+        }
+    </div>
+    <div class="form-group">
+        <label>Telefon</label>
+        @Html.TextBoxFor(model => model.Telefon, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        <label>Grad</label>
+        @Html.DropDownListFor(modul => modul.GradId, Model.Gradovi, new { @class = "form-control" })
+        @if (error3 != null)
+        {
+            <label class="text-danger">@error3</label>
+        }
+    </div>
+    <div class="form-group">
+        <label>Adresa</label>
+        @Html.TextBoxFor(modul => modul.Adresa, new { @class = "form-control" })
+    </div>
+    if ((Autentifikacija.KorisnikSesija.UlogaNaSistemuId == 1 && Model.KorisnckoIme != Autentifikacija.KorisnikSesija.Osoba.KorisnickoIme) && Model.UlogaId!=3)
+    {
+        <div class="form-group">
+            <label>Uloga</label>
+            @Html.DropDownListFor(modul => modul.UlogaId, Model.Uloge, new { @class = "form-control" })
+            @if (error2 != null)
+            {
+                <label class="text-danger">@error2</label>
+            }
+        </div>
+    }
+    else
+    {
+        @Html.HiddenFor(modul=>modul.UlogaId)
+    }
+    <br />
+    @Html.ValidationSummary()
+    <input type="submit" value="Snimi" class="btn btn-success" />
+
+
+    }

@@ -1,0 +1,58 @@
+﻿@{
+    // Layout = null;
+    ViewBag.Title = "Registracija";
+}
+@model Kulturno_sportski_centar.Areas.ModulAdministrator.Models.UrediUposlenikVM
+
+<!DOCTYPE html>
+
+<meta name="viewport" content="width=device-width" />
+<title>Registracija</title>
+<header>
+    <div>
+        <a href="/Registracija/Pocetna" class="btn btn-light">POČETNA</a>
+    </div>
+</header>
+
+<div class="container-fluid">
+    <div class="card card-login mx-auto mt-5">
+        <div class="card-header"><h1>Registracija</h1></div>
+        <div class="card-body">
+            @using (Html.BeginForm("UrediSnimi", "Uposlenik"))
+            {
+
+                @Html.HiddenFor(model=>model.UposlenikId)
+
+                <table class="table table-striped">
+                    <tr>
+                        <td><label for="exampleInputFirstName">Zvanje</label></td>
+                        <td>
+                            @Html.TextBoxFor(model=>model.Zvanje)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="exampleInputLastName">Datum zapošljenja</label></td>
+                        <td>
+                            @Html.TextBoxFor(model => model.DatumZaposljenja)
+                            @Html.ValidationMessageFor(model=>model.DatumZaposljenja)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="exampleInputDate">Radno mjesto</label></td>
+                        <td>
+                            @Html.DropDownListFor(model => model.RadnoMjestoId, Model.RadnaMjesta)
+                            @Html.ValidationMessageFor(model=>model.RadnoMjestoId)
+                        </td>
+                    </tr>
+                    
+                </table>  
+
+                <hr />
+                @Html.ValidationSummary()
+                <hr />
+
+                <input type="submit" class="btn btn-success" value="Snimi" />
+            }
+        </div>
+    </div>
+</div>

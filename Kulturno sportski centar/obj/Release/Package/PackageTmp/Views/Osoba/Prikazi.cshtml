@@ -1,0 +1,76 @@
+﻿@using WebApplication2.Models;
+@{
+    //Layout = null;
+    List<Osoba> osobe = (List<Osoba>)ViewData["nesto"];
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Prikazi</title>
+    <style>
+        table, td, th {
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            padding: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div> 
+        <table>
+            <thead>
+                <tr>
+                    <td>Id</td>
+                    <td>Ime</td>
+                    <td>Prezime</td>
+                    <td>Datum rođenja</td>
+                    <td>JMBG</td>
+                    <td>Korisnicko ime</td>
+                    <td>Drzava</td>
+                    <td>Regija</td>
+                    <td>Grad</td>
+                    <td>Adresa</td>
+                    <td>Email</td>
+                    <td>Telefon</td>
+                    
+                </tr>
+            </thead>
+            <tbody>
+    @foreach (Osoba a in osobe)
+    {
+                <tr>
+
+                    <td>@a.Id</td>
+                    <td>@a.Ime</td>
+                    <td>@a.Prezime</td>
+                    <td>@a.DatumRodjenja</td>
+                    <td>@a.JMBG</td>
+                    <td>@a.KorisnickoIme</td>
+                    <td>@a.Grad.Regija.Drzava.Naziv</td>
+                    <td>@a.Grad.Regija.Naziv</td>
+                    <td>@a.Grad.Naziv</td>
+                    <td>@a.Adresa</td>
+                    <td>@a.Email</td>
+                    <td>@a.Telefon</td>
+                 
+                </tr>   
+    }
+            </tbody>
+        </table>
+
+
+     
+    </div>
+</body>
+</html>

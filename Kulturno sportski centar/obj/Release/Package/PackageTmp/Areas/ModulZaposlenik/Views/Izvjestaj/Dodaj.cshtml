@@ -1,0 +1,38 @@
+﻿
+@{
+    //Layout = null;
+    ViewBag.Title = "Dodaj izvještaj";
+}
+
+@model Kulturno_sportski_centar.Areas.ModulZaposlenik.Models.DodajIzvjestajVM
+<h2 class="card-title">Dodaj izvještaj</h2>
+
+@using (Html.BeginForm("Snimi", "Izvjestaj"))
+{
+    @Html.HiddenFor(model=>model.Datum)
+    @Html.HiddenFor(model=>model.Id)
+    @Html.HiddenFor(model=>model.UposlenikId)
+
+    <table class="table table-striped">
+
+        <tr>
+            <td>Opis : </td>
+            <td>@Html.TextBoxFor(model => model.Opis)</td>
+            <td>@Html.ValidationMessageFor(model=>model.Opis)</td>
+        </tr>
+        <tr>
+            <td>Vrsta : </td>
+            <td>@Html.TextBoxFor(model => model.Vrsta)</td>
+            <td>@Html.ValidationMessageFor(model => model.Vrsta)</td>
+        </tr>
+
+    </table>
+    <hr />
+    @Html.ValidationSummary();
+    <hr />
+    <div>
+        <input type="submit" value="Snimi" class="btn btn-success" />
+    </div>
+
+}
+

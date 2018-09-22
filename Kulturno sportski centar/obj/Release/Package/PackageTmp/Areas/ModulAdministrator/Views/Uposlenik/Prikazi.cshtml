@@ -1,0 +1,48 @@
+﻿@using Kulturno_sportski_centar.Helper
+@{
+    //Layout = null;
+    ViewBag.Title = "Uposlenici KSC";
+}
+@model Kulturno_sportski_centar.Areas.ModulAdministrator.Models.UposlenikPrikaziVM
+
+
+<h1 class="card-title">Uposlenici KSC-a</h1>
+
+<div>
+
+    <table class="table table-striped">
+
+        <thead>
+            <tr>
+                <td>Ime i prezime</td>
+                <td>Datum zapošljenja</td>
+                <td>Iskustvo</td>
+                <td>Zvanje</td>
+                <td>Radno mjesto</td>
+                <td>Akcija</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var u in Model.Uposlenici)
+            {
+                <tr>
+                    <td>@u.ImePrezime</td>
+                    <td>@u.DatumZaposljenja.ToShortDateString()</td>
+                    <td>@u.Iskustvo</td>
+                    <td>@u.Zvanje</td>
+                    <td>@u.RadnoMjesto</td>
+                    <td>
+                        <a href="/ModulAdministrator/Uposlenik/Uredi?UposlenikId=@u.UposlenikId" class="btn btn-info">Uredi</a>
+                        <a href="/ModulKorisnik/Korisnik/Detalji?Id=@u.OsobaId" class="btn btn-info">Detalji</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+
+    <a href="/ModulAdministrator/Uposlenik/Dodaj" class="btn btn-outline-success">Novi uposlenik</a>
+    <a href="/ModulAdministrator/RadnoMjesto/Prikazi" class="btn btn-info">Radna mjesta</a> 
+
+</div>
+

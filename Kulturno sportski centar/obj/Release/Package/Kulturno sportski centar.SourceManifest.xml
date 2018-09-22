@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<sitemanifest>
+  <IisApp path="C:\Users\Gittara\Desktop\RS1 Seminarski\Implementacija\Seminarski-RS1\Seminarski RS1\Kulturno sportski centar\obj\Release\Package\PackageTmp" />
+  <setAcl path="C:\Users\Gittara\Desktop\RS1 Seminarski\Implementacija\Seminarski-RS1\Seminarski RS1\Kulturno sportski centar\obj\Release\Package\PackageTmp" setAclResourceType="Directory" />
+  <setAcl path="C:\Users\Gittara\Desktop\RS1 Seminarski\Implementacija\Seminarski-RS1\Seminarski RS1\Kulturno sportski centar\obj\Release\Package\PackageTmp" setAclUser="anonymousAuthenticationUser" setAclResourceType="Directory" />
+</sitemanifest>

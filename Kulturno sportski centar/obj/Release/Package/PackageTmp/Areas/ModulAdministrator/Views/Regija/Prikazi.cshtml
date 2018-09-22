@@ -1,0 +1,57 @@
+﻿@using Kulturno_sportski_centar.Helper;
+@using WebApplication2.Models;
+@using Kulturno_sportski_centar.Areas.ModulAdministrator.Models;
+@{
+    // Layout = null;
+
+    ViewBag.Title = "Regija";
+}
+
+<h1>Prikaz regija</h1>
+
+
+@model Kulturno_sportski_centar.Areas.ModulAdministrator.Models.RegijaPrikaziViewModel
+
+<form>
+    @Html.DropDownListFor(model => model.DrzavaId, Model.ListaDrzava, new { @class = "btn btn-secondary dropdown-toggle" })
+    <input type="submit" value="Odaberi" class="btn btn-default" />
+</form>
+
+
+
+<table class="table table-bordered table-hover ">
+    <thead>
+        <tr>
+            <td>Id</td>
+            <td>Naziv</td>
+            <td>Oznaka</td>
+            <td>Država</td>
+            @if (Autentifikacija.KorisnikSesija.UlogaNaSistemuId == 1)
+            {
+                <td>Akcija</td>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Regija x in Model.Regije)
+        {
+            <tr>
+                <td>@x.Id</td>
+                <td>@x.Naziv</td>
+                <td>@x.Oznaka</td>
+                <td>@x.Drzava.Naziv</td>
+                @if (Autentifikacija.KorisnikSesija.UlogaNaSistemuId == 1)
+                {
+                    <td>
+                        <a href="~/ModulAdministrator/Regija/Uredi/?Id=@x.Id" class="btn btn-primary">Uredi</a>
+                        <a href="~/ModulAdministrator/Regija/Obrisi/?Id=@x.Id" class="btn btn-danger">Obriši</a>
+                    </td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>
+@if (Autentifikacija.KorisnikSesija.UlogaNaSistemuId == 1)
+{
+    <a href="~/ModulAdministrator/Regija/Dodaj" class="btn  btn-info">Dodaj regiju</a>
+}

@@ -1,0 +1,68 @@
+﻿@using WebApplication2.Models;
+@{
+    //Layout = null;
+    
+    ViewBag.Title = "Korisnik";
+}
+
+@model Kulturno_sportski_centar.Areas.ModulKorisnik.Models.KorisnikPrikaziDetaljnoViewModel
+
+<h1>Podaci o korisnku</h1>
+
+
+<table class="table">
+    <tr>
+        <td>Id</td>
+        <td>@Model.Id</td>
+    </tr>
+    <tr>
+        <td>Korisnicko ime</td>
+        <td>@Model.KorisnickoIme</td>
+    </tr>
+
+    <tr>
+        <td>Ime</td>
+        <td>@Model.Ime</td>
+    </tr>
+    <tr>
+        <td>Prezime</td>
+        <td>@Model.Prezime</td>
+    </tr>
+    <tr>
+        <td>Datum registracije</td>
+        <td>@Model.DatumRegistracije.ToString("dd/M/yyyy")</td>
+    </tr>
+    <tr>
+        <td>Uloga</td>
+        <td>@Model.UlogaNaSistemu</td>
+    </tr>
+    <tr>
+        <td>Datum rođenja</td>
+        <td>@Model.DatumRodjenja.ToString("dd/M/yyyy")</td>
+    </tr>
+    <tr>
+        <td>JMBG</td>
+        <td>@Model.JMBG</td>
+    </tr>
+    <tr>
+        <td>Email</td>
+        <td>@Model.Email</td>
+    </tr>
+    <tr>
+        <td>Telefon</td>
+        <td>@Model.Telefon</td>
+    </tr>
+    <tr>
+        <td>Grad</td>
+        <td>@Model.Grad</td>
+    </tr>
+    <tr>
+        <td>Adresa</td>
+        <td>@Model.Adresa</td>
+    </tr>
+    <tr>
+        <td> <a href="~/ModulKorisnik/Korisnik/Uredi/?Id=@Model.Id" class="btn btn-primary btn-lg">Uredi</a></td>
+    </tr>
+   
+</table>
+  

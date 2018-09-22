@@ -1,0 +1,51 @@
+﻿@{
+    // Layout = null;
+    ViewBag.Title = "Novo radno mjesto";
+}
+@model Kulturno_sportski_centar.Areas.ModulAdministrator.Models.DodajRadnoMjestoVM
+
+<!DOCTYPE html>
+
+<meta name="viewport" content="width=device-width" />
+<title>Novo radno mjesto</title>
+
+<div class="container-fluid">
+    <div class="card card-login mx-auto mt-5">
+        <div class="card-header"><h1>Novo radno mjesto</h1></div>
+        <div class="card-body">
+            @using (Html.BeginForm("Snimi", "RadnoMjesto"))
+            {
+
+                @Html.HiddenFor(model=>model.RadnoMjestoId)
+
+                <table class="table table-striped">
+                    <tr>
+                        <td><label for="exampleInputNaziv">Naziv radnog mjesta</label></td>
+                        <td>
+                            @Html.TextBoxFor(model=>model.Naziv)
+                            @Html.ValidationMessageFor(model => model.Naziv)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="exampleInputOpis">Opis</label></td>
+                        <td>@Html.TextBoxFor(model=>model.Opis)</td>
+                    </tr>
+                    <tr>
+                        <td><label for="exampleInputVrijeme">Dužina radnog vremena</label></td>
+                        <td>@Html.TextBoxFor(model=>model.DuzinaRadnogVremena)</td>
+                        <td>@Html.ValidationMessageFor(model => model.DuzinaRadnogVremena)</td>
+                    </tr>
+                    <tr>
+                        <td><label for="exampleInputPrioritet">Prioritet</label></td>
+                        <td>@Html.TextBoxFor(model=>model.Priotritet)</td>
+                    </tr>
+                </table>
+
+                <hr />
+                @Html.ValidationSummary();
+                <hr />
+                <input type="submit" value="Snimi" class="btn btn-success" />
+            }
+        </div>
+    </div>
+</div>

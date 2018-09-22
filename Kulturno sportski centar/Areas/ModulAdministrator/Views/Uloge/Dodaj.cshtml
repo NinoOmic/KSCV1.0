@@ -1,0 +1,28 @@
+﻿
+@{
+    //Layout = null;
+    ViewBag.Title = "Nova uloga";
+}
+
+@model Kulturno_sportski_centar.Areas.ModulAdministrator.Models.DodajUloguVM
+
+<h2 class="card-title">Nova uloga</h2>
+
+@using (Html.BeginForm("Snimi", "Uloge"))
+{
+
+    @Html.HiddenFor(model=>model.UlogaId)
+
+    <div class="form-group">
+        <div class="form-control">
+            <label>Naziv uloge : </label>
+            @Html.TextBoxFor(model => model.Uloga)
+            @Html.ValidationMessageFor(model => model.Uloga)
+        </div>
+    </div>
+    <hr />
+    @Html.ValidationSummary();
+    <hr />
+    <input type="submit" class="btn btn-success" value="Snimi" />
+}
+

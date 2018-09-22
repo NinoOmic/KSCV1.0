@@ -1,0 +1,52 @@
+﻿@using Kulturno_sportski_centar.Models
+@using Kulturno_sportski_centar.Helper
+@{
+    //Layout = null;
+    ViewBag.Title = "Oprema";
+}
+
+@model Kulturno_sportski_centar.Areas.ModulZaposlenik.Models.PrikaziOpremuVM
+
+<h2>Oprema sale</h2>
+@Html.HiddenFor(model => model.SalaId)
+<table class="table table-striped">
+
+    <thead>
+        <tr>
+            <td>Naziv</td>
+            <td>Opis</td>
+            <td>Količina</td>
+            <td>Sala</td>
+            @if (Autentifikacija.KorisnikSesija.UlogaNaSistemuId == 1)
+            {
+                <td>Akcija</td>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var o in Model.Oprema)
+        {
+            <tr>
+                <td>@o.Naziv</td>
+                <td>@o.Opis</td>
+                <td>@o.Kolicina</td>
+                <td>@o.Sala</td>
+                @if (Autentifikacija.KorisnikSesija.UlogaNaSistemuId == 1)
+                {
+                    <td>
+                        <a href="/ModulZaposlenik/Oprema/Uredi?OpremaId=@o.Id" class="btn btn-primary">Uredi</a>
+
+                        <a href="/ModulZaposlenik/Oprema/Obrisi?OpremaId=@o.Id" class="btn btn-danger">Obriši</a>
+                    </td>
+                }
+            </tr>
+        }
+    </tbody>
+
+</table>
+@if (Autentifikacija.KorisnikSesija.UlogaNaSistemuId == 1)
+{
+    <div>
+        <a href="/ModulZaposlenik/Oprema/Dodaj?SalaId=@Model.SalaId" class="btn btn-light">Dodaj</a>
+    </div>
+}

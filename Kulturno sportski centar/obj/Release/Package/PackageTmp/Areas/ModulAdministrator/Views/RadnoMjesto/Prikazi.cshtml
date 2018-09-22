@@ -1,0 +1,45 @@
+﻿@using Kulturno_sportski_centar.Helper
+@{
+    //Layout = null;
+    ViewBag.Title = "Uposlenici KSC";
+}
+@model Kulturno_sportski_centar.Areas.ModulAdministrator.Models.RadnoMjestoPrikaziVM
+
+
+<h1 class="card-title">Uposlenici KSC-a</h1>
+
+<div>
+
+    <table class="table table-striped">
+
+        <thead>
+            <tr>
+                <td>Naziv</td>
+                <td>Opis</td>
+                <td>Duzina radnog vremena</td>
+                <td>Prioritet</td>
+                <td>Akcija</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var r in Model.RadnaMjesta)
+            {
+                <tr>
+                    <
+                    <td>@r.Naziv</td>
+                    <td>@r.Opis</td>
+                    <td>@r.DuzinaRadnogVremena sati</td>
+                    <td>@r.Prioritet</td>
+                    <td>
+                        <a href="/ModulAdministrator/RadnoMjesto/Uredi?MjestoId=@r.Id" class="btn btn-info">Uredi</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+
+    <a href="/ModulAdministrator/RadnoMjesto/Dodaj" class="btn btn-outline-dark">Novo radno mjesto</a>
+
+</div>
+

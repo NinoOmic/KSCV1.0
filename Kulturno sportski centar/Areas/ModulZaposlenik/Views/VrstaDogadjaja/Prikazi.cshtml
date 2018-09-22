@@ -1,0 +1,44 @@
+﻿@using Kulturno_sportski_centar.Helper
+@{
+    //Layout = null;
+    ViewBag.Title = "Vrste Dogadjaja";
+}
+
+@model Kulturno_sportski_centar.Areas.ModulZaposlenik.Models.PrikaziVrstuDogadjajaVM
+
+<div>
+
+    <h1 class="card-title">Vrste događaja</h1>
+    <table class="table table-striped">
+
+        <thead>
+            <tr>
+                <td>Vrsta</td>
+                <td>Opis</td>
+                <td>Akcija</td>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach(var v in Model.VrsteDogadjaja)
+            {
+                <tr>
+                    <td>@v.Naziv</td>
+                    <td>@v.Opis</td>
+                    <td>
+                        <a href="/ModulZaposlenik/VrstaDogadjaja/Uredi?VrstaId=@v.Id" class="btn btn-info">Uredi</a>
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+
+
+    <div>
+        <a href="/ModulZaposlenik/VrstaDogadjaja/Dodaj" class="btn btn-light">Nova vrsta</a>
+    </div>
+
+</div>
+
+

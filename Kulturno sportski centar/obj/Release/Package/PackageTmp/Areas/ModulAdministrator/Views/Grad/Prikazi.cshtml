@@ -1,0 +1,63 @@
+﻿@using WebApplication2.Models;
+@using Kulturno_sportski_centar.Helper;
+@{
+    //  Layout = null;
+
+    ViewBag.Title = "Gradovi";
+
+}
+
+@model Kulturno_sportski_centar.Areas.ModulAdministrator.Models.GradPrikaziViewModel
+
+
+<h1>Prikaz gradova</h1>
+
+
+<form>
+    @Html.DropDownListFor(model => model.RegijaId, Model.ListaRegija, new { @class = "btn btn-secondary dropdown-toggle" })
+    <input type="submit" value="Odaberi" class="btn btn-default" />
+</form>
+
+<table class="table table-bordered table-hover ">
+    <thead>
+        <tr>
+            <td>Id</td>
+            <td>Naziv</td>
+            <td>Oznaka</td>
+            <td>Poštanski broj</td>
+            <td>Regija</td>
+            <td>Država</td>
+            @if (Autentifikacija.KorisnikSesija.UlogaNaSistemuId == 1)
+            {
+                <td>Akcija</td>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Grad x in Model.Gradovi)
+        {
+            <tr>
+                <td>@x.Id</td>
+                <td>@x.Naziv</td>
+                <td>@x.Oznaka</td>
+                <td>@x.PostanskiBroj</td>
+                <td>@x.Regija.Naziv</td>
+                <td>@x.Regija.Drzava.Naziv</td>
+                @if (Autentifikacija.KorisnikSesija.UlogaNaSistemuId == 1)
+                {
+                    <td>
+                        <a href="~/ModulAdministrator/Grad/Uredi/?Id=@x.Id" class="btn btn-primary">Uredi</a>
+                        <a href="~/ModulAdministrator/Grad/Obrisi/?Id=@x.Id" class="btn btn-danger">Obriši</a>
+                    </td>
+                }
+            </tr>
+        }
+
+    </tbody>
+</table>
+@if (Autentifikacija.KorisnikSesija.UlogaNaSistemuId == 1)
+{
+    <a href="/ModulAdministrator/Grad/dodaj" class="btn btn-info">Dodaj grad</a>
+}
+
+

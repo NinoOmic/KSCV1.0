@@ -1,0 +1,48 @@
+﻿@using Kulturno_sportski_centar.Helper;
+@{
+    // Layout = null;
+    ViewBag.Title = "Izvještaji";
+}
+@model Kulturno_sportski_centar.Areas.ModulZaposlenik.Models.PrikaziIzvjestajVM
+<h1>Izvještaji</h1>
+
+<div class="container-fluid">
+
+    <table class="table table-bordered table-hover ">
+        <thead class="thead-active">
+            <tr>
+                <td>Uposlenik</td>
+                <td>Datum</td>
+                <td>Opis</td>
+                <td>Vrsta</td>
+                <td>Akcija</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var x in Model.Izvjestaji)
+            {
+                <tr>
+                    <td>@x.Uposlenik</td>
+                    <td>@x.Datum.ToShortDateString()</td>
+                    <td>@x.Opis</td>
+                    <td>@x.Vrsta</td>
+                    <td>
+                        <a href="/ModulZaposlenik/Izvjestaj/Uredi?IzvjestajId=@x.Id" class="btn btn-info">Uredi</a>
+                        @if (Autentifikacija.KorisnikSesija.UlogaNaSistemuId == 1)
+                        {
+                            <a href="/ModulZaposlenik/Izvjestaj/Obrisi?Id=@x.Id" class="btn btn-danger">Obriši</a>
+                        }
+                    </td>
+
+
+                </tr>
+            }
+        </tbody>
+
+    </table>
+
+    @if (Autentifikacija.KorisnikSesija.UlogaNaSistemuId == 3)
+    {
+        <a href="~/ModulZaposlenik/Izvjestaj/Dodaj" class="btn btn-success">Dodaj izvještaj</a>
+    }
+</div>

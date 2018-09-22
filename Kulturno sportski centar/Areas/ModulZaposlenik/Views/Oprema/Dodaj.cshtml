@@ -1,0 +1,49 @@
+﻿
+@{
+    //Layout = null;
+    ViewBag.Title = "Dodaj opremu";
+}
+
+@model Kulturno_sportski_centar.Areas.ModulZaposlenik.Models.DodajOpremuVM
+
+<h2>Dodaj opremu</h2>
+
+@using (Html.BeginForm("Snimi", "Oprema"))
+{
+
+    @Html.HiddenFor(model => model.SalaId)
+    @Html.HiddenFor(model => model.Id)
+   
+
+    <table class="table table-striped">
+
+        <tr>
+            <td>Naziv : </td>
+            <td>
+                @Html.TextBoxFor(model => model.Naziv)
+                @Html.ValidationMessageFor(model=>model.Naziv)
+            </td>
+        </tr>
+        <tr>
+            <td>Opis : </td>
+            <td>@Html.TextBoxFor(model => model.Opis)</td>
+        </tr>
+        <tr>
+            <td>Količina : </td>
+            <td>
+                @Html.TextBoxFor(model => model.Kolicina)
+                @Html.ValidationMessageFor(model=>model.Kolicina)
+            </td>
+        </tr>
+
+    </table>
+
+    <hr />
+    @Html.ValidationSummary();
+
+    <div>
+        <input type="submit" value="Snimi" class="btn btn-success" />
+    </div>
+
+}
+

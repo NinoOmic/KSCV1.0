@@ -1,0 +1,36 @@
+﻿@using Kulturno_sportski_centar.Helper
+
+@{
+    //Layout = null;
+    ViewBag.Title = "Nova vrsta događaja";
+}
+
+@model Kulturno_sportski_centar.Areas.ModulZaposlenik.Models.DodajVrstuDogadjajaVM
+
+<h1 class="card-title">Nova vrsta događaja</h1>
+
+@using (Html.BeginForm("Snimi", "VrstaDogadjaja"))
+{
+
+    @Html.HiddenFor(model=>model.VrstaDogadjajaId)
+
+    <table class="table table-striped">
+
+        <tr>
+            <td>Vrsta događaja : </td>
+            <td>@Html.TextBoxFor(model=>model.Naziv)</td>
+            <td>@Html.ValidationMessageFor(model=>model.Naziv)</td>
+        </tr>
+        <tr>
+            <td>Opis : </td>
+            <td>@Html.TextBoxFor(model=>model.Opis)</td>
+        </tr>
+
+    </table>
+
+    <hr />
+    @Html.ValidationSummary()
+    <hr />
+    <input type="submit" value="Snimi" class="btn btn-success">
+
+}

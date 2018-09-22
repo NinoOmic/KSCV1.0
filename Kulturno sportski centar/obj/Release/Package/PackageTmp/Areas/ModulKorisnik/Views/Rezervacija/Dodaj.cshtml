@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewBag.Title = "Dodaj";
+}
+
+<h2>Dodaj</h2>
+
+@model Kulturno_sportski_centar.Areas.ModulKorisnik.Models.RezervacijaDodajModelView
+
+<form action="/ModulKorisnik/Rezervacija/Snimi/">
+ <table>
+     <tr>
+         <td>Korisnik</td>
+         <td><input type="text" name="KorisnikId" /></td>
+         
+     </tr>
+ </table>
+    <input type="submit" value="Spremi" class="btn btn-success" />
+</form>
+

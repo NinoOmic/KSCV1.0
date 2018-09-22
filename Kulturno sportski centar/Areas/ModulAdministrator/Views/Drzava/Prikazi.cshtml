@@ -1,0 +1,52 @@
+﻿@using WebApplication2.Models;
+@using Kulturno_sportski_centar.Areas.ModulAdministrator.Models;
+@using Kulturno_sportski_centar.Helper;
+@{
+
+    ViewBag.Title = "Država";
+
+}
+
+@model Kulturno_sportski_centar.Areas.ModulAdministrator.Models.DrzavaPrikaziViewModel
+
+<h3>Prikaz država</h3>
+
+
+<table class="table table-bordered table-hover ">
+    <thead>
+        <tr>
+            <td>Id</td>
+            <td>Naziv</td>
+            <td>Oznaka</td>
+            @if (Autentifikacija.KorisnikSesija.UlogaNaSistemuId == 1)
+            {
+                <td>Akcija</td>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Drzava x in Model.Drzave)
+        {
+            <tr>
+                <td>@x.Id</td>
+                <td>@x.Naziv</td>
+                <td>@x.Oznaka</td>
+                @if (Autentifikacija.KorisnikSesija.UlogaNaSistemuId == 1)
+                {
+                    <td>
+                        <a href="~/ModulAdministrator/Drzava/Uredi/?Id=@x.Id" class="btn btn-primary">Uredi</a>
+                        <a href="~/ModulAdministrator/Drzava/Obrisi/?Id=@x.Id" class="btn btn-danger">Obriši</a>
+                    </td>
+                }
+            </tr>
+        }
+
+    </tbody>
+</table>
+
+@if (Autentifikacija.KorisnikSesija.UlogaNaSistemuId == 1)
+{
+    <a href="~/ModulAdministrator/Drzava/Dodaj" class="btn  btn-info">Dodaj državu</a>
+}
+
+

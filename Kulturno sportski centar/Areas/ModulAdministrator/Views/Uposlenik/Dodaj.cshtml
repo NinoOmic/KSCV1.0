@@ -1,0 +1,134 @@
+﻿@{
+    // Layout = null;
+    ViewBag.Title = "Novi uposlenik";
+    string error = (string)ViewData["error"];
+    string error1 = (string)ViewData["error1"];
+    string error2 = (string)ViewData["error2"];
+    string error3 = (string)ViewData["error3"];
+}
+@model Kulturno_sportski_centar.Areas.ModulAdministrator.Models.DodajUposlenikaVM
+
+<!DOCTYPE html>
+
+<meta name="viewport" content="width=device-width" />
+<title>Novi uposlenik</title>
+
+<div class="container-fluid">
+    <div class="card card-login mx-auto mt-5">
+        <div class="card-header"><h1>Novi uposlenik</h1></div>
+        <div class="card-body">
+            @using (Html.BeginForm("Snimi", "Uposlenik"))
+            {
+
+                @Html.HiddenFor(model => model.Id)
+
+                <table class="table table-striped">
+                    <tr>
+                        <td><label for="exampleInputFirstName">Ime</label></td>
+                        <td>
+                            @Html.TextBoxFor(model => model.Ime)
+                            @Html.ValidationMessageFor(model => model.Ime)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="exampleInputLastName">Prezime</label></td>
+                        <td>
+                            @Html.TextBoxFor(model => model.Prezime)
+                            @Html.ValidationMessageFor(model => model.Prezime)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="exampleInputDate">Datum rođenja</label></td>
+                        <td>
+                            @Html.TextBoxFor(model => model.DatumRodjenja)
+                            @Html.ValidationMessageFor(model => model.DatumRodjenja)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="exampleInputIdNumber">JMBG</label></td>
+                        <td>
+                            @Html.TextBoxFor(model => model.JMBG)
+                            @Html.ValidationMessageFor(model => model.JMBG)
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td><label for="exampleInputUsername">Korisnicko ime</label></td>
+                        <td>
+                            @Html.TextBoxFor(model => model.KorisnckoIme)
+                            @Html.ValidationMessageFor(model => model.KorisnckoIme)
+                            @if (error2 != null)
+                            {
+                                <label class="text-danger">@error2</label>
+                            }
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td><label for="exampleInputPassword1">Lozinka</label></td>
+                        <td>
+                            @Html.PasswordFor(model => model.Lozinka)
+                            @Html.ValidationMessageFor(model => model.Lozinka)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="exampleInputGrad">Grad</label></td>
+                        <td>@Html.DropDownListFor(model => model.GradId, Model.Gradovi)</td>
+                        @if (error != null)
+                        {
+                            <td><label class="text-danger">@error</label></td>
+                        }
+                    </tr>
+                    <tr>
+                        <td><label for="exampleInputAdress">Adresa</label></td>
+                        <td>@Html.TextBoxFor(model => model.Adresa)</td>
+                    </tr>
+                    <tr>
+                        <td><label for="exampleInputEmail">Email</label></td>
+                        <td>
+                            @Html.TextBoxFor(model => model.Email)
+                            @Html.ValidationMessageFor(model => model.Email)
+                            @if (error3 != null)
+                            {
+                                <label class="text-danger">@error3</label>
+                            }
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="exampleInputPhone">Telefon</label></td>
+                        <td>@Html.TextBoxFor(model => model.Telefon)</td>
+                    </tr>
+                    <tr>
+                        <td><label for="exampleInputIskustvo">Iskustvo(text)</label></td>
+                        <td>@Html.TextBoxFor(model=>model.Iskustvo)</td>
+                    </tr>
+                    <tr>
+                        <td><label for="exampleInputZvanje">Zvanje</label></td>
+                        <td>@Html.TextBoxFor(model=>model.Zvanje)</td>
+                    </tr>
+                    <tr>
+                        <td><label for="exampleInputRadnoMjesto">Radno mjesto</label></td>
+                        <td>@Html.DropDownListFor(model => model.RadnoMjestoId, Model.RadnaMjesta)</td>
+                        @if (error1 != null)
+                        {
+                            <td><label class="text-danger">@error1</label></td>
+                        }
+                    </tr>
+                </table>
+                <hr />
+                @Html.ValidationSummary()
+                <hr />
+
+                <input type="submit" value="Snimi" class="btn btn-lg btn-primary btn-block btn-signin" />
+            }
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Bootstrap core JavaScript-->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- Core plugin JavaScript-->
+<script src="vendor/jquery-easing/jquery.easing.min.js"></script>

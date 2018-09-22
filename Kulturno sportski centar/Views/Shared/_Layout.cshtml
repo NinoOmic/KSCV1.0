@@ -1,0 +1,249 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no  maximum-scale=1, user-scalable=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>@ViewBag.Title - Kulturno sportski centar</title>
+    <!-- Bootstrap core CSS-->
+    <link href="~/Template/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom fonts for this template-->
+    <link href="~/Template/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <!-- Page level plugin CSS-->
+    <link href="~/Template/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+    <!-- Custom styles for this template-->
+    <link href="~/Template/css/sb-admin.css" rel="stylesheet">
+</head>
+<body class="fixed-nav sticky-footer bg-dark" id="page-top">
+    <!-- Navigation-->
+    @using Kulturno_sportski_centar.Helper;
+    @if (Autentifikacija.KorisnikSesija != null)
+    {
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+        @if (Autentifikacija.KorisnikSesija.UlogaNaSistemuId == 2)
+        {
+            <a class="navbar-brand" href="/Home/HomeKorisnik">Kulturno sportski centar</a>
+        }
+        else
+        {
+            <a class="navbar-brand" href="/Home/Index">Kulturno sportski centar</a>
+        }
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
+                    @if (Autentifikacija.KorisnikSesija.UlogaNaSistemuId == 2)
+                    {
+                        <a class="nav-link" href="/Home/HomeKorisnik">
+                            <i class="fa fa-fw fa-dashboard"></i>
+                            <span class="nav-link-text">Početna</span>
+                        </a>
+                    }
+                    else
+                    {
+                        <a class="nav-link" href="/Home/Index">
+                            <i class="fa fa-fw fa-dashboard"></i>
+                            <span class="nav-link-text">Početna</span>
+                        </a>
+                    }
+                </li>
+
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
+                    <a class="nav-link" href="@Url.Action("Index", "Termin", new { Area = "ModulZaposlenik" })">
+                        <i class="fa fa-calendar"></i>
+                        <span class="nav-link-text">Termini</span>
+                    </a>
+                </li>
+
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
+                    <a class="nav-link" href="@Url.Action("Index", "Rezervacija", new { Area = "ModulKorisnik"})">
+                        <i class="fa fa-check"></i>
+                        <span class="nav-link-text">Rezervacije</span>
+                    </a>
+                </li>
+                @if (Autentifikacija.KorisnikSesija.UlogaNaSistemuId != 2)
+                {
+                    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
+                        <a class="nav-link" href="@Url.Action("Index", "Korisnik", new { Area = "ModulKorisnik" })">
+                            <i class="fa fa-users"></i>
+                            <span class="nav-link-text">Korisnici</span>
+                        </a>
+                    </li>
+                }
+
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
+                    <a class="nav-link" href="@Url.Action("Prikazi", "Sala", new { Area = "ModulZaposlenik" })">
+                        <i class="fa fa-bank"></i>
+                        <span class="nav-link-text">Sale</span>
+                    </a>
+                </li>
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
+                    <a class="nav-link" href="/ModulKorisnik/Korisnik/Detalji/?Id=@Autentifikacija.KorisnikSesija.Id">
+                        <i class="fa fa-user"></i>
+                        <span class="nav-link-text">@Autentifikacija.KorisnikSesija.Osoba.Ime @Autentifikacija.KorisnikSesija.Osoba.Prezime  </span>
+                    </a>
+                </li>
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
+                    <a class="nav-link" href="@Url.Action("Prikazi", "Dogadjaj", new { Area = "ModulZaposlenik" })">
+                        <i class="fa fa-soccer-ball-o"></i>
+                        <span class="nav-link-text">Događaji</span>
+                    </a>
+                </li>
+                @if (Autentifikacija.KorisnikSesija.UlogaNaSistemuId != 2)
+                {
+                    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
+                        <a class="nav-link" href="@Url.Action("Prikazi", "Izvjestaj", new { Area = "ModulZaposlenik" })">
+                            <i class="fa fa-file-archive-o"></i>
+                            <span class="nav-link-text">Izvještaji</span>
+                        </a>
+                    </li>
+                }
+                @if (Autentifikacija.KorisnikSesija.UlogaNaSistemuId != 2)
+                {
+                    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
+                        <a class="nav-link" href="@Url.Action("PrikaziSveKarte", "RezervacijaZaDogadjaj", new { Area = "ModulKorisnik" })">
+                            <i class="fa fa-ticket"></i>
+                            <span class="nav-link-text">Karte</span>
+                        </a>
+                    </li>
+                }
+                else
+                {
+                    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
+                        <a class="nav-link" href="@Url.Action("Prikazi", "RezervacijaZaDogadjaj", new { Area = "ModulKorisnik" })">
+                            <i class="fa fa-ticket"></i>
+                            <span class="nav-link-text">Karte</span>
+                        </a>
+                    </li>
+                }
+
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Example Pages">
+                    <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseExamplePages" data-parent="#exampleAccordion">
+                        <i class="fa fa-globe"></i>
+                        <span class="nav-link-text">Lokacija</span>
+                    </a>
+                    <ul class="sidenav-second-level collapse" id="collapseExamplePages">
+                        <li>
+                            <a href="@Url.Action("Index", "Drzava", new { Area = "ModulAdministrator" })">
+                                <i class="fas fa-map-marker-alt"></i>Država
+                            </a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Index", "Regija", new { Area = "ModulAdministrator" })">
+                                <i class="fas fa-map-marker-alt"></i>Regija
+                            </a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Index", "Grad", new { Area = "ModulAdministrator" })">
+                                <i class="fas fa-map-marker-alt"></i>Grad
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+
+            </ul>
+            <ul class="navbar-nav sidenav-toggler">
+                <li class="nav-item">
+                    <a class="nav-link text-center" id="sidenavToggler">
+                        <i class="fa fa-fw fa-angle-left"></i>
+                    </a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/ModulKorisnik/Korisnik/Detalji/?Id=@Autentifikacija.KorisnikSesija.Id">
+                        <i class="fa fa-id-card"></i> @Autentifikacija.KorisnikSesija.Osoba.Ime @Autentifikacija.KorisnikSesija.Osoba.Prezime
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
+                        <i class="fa fa-fw fa-sign-out"></i>Odjava
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+        <div class="content-wrapper">
+            <div class="container-fluid">
+                <!-- Breadcrumbs-->
+                <ol class="breadcrumb">
+                    @if (Autentifikacija.KorisnikSesija.UlogaNaSistemuId != 2)
+                    {
+                        <li class="breadcrumb-item">
+                            <a href="/Home/Index">Početna</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="breadcrumb-item">
+                            <a href="/Home/HomeKorisnik">Početna</a>
+                        </li>
+                    }
+                        <li class="breadcrumb-item active">@ViewBag.Title</li>
+                    </ol>
+            </div>
+
+            <footer class="sticky-footer">
+                <div class="container">
+                    <div class="text-center">
+                        <small>Copyright  &copy; @DateTime.Now.Year - FIT</small>
+                    </div>
+                </div>
+            </footer>
+            <!-- Scroll to Top Button-->
+            <a class="scroll-to-top rounded" href="#page-top">
+                <i class="fa fa-angle-up"></i>
+            </a>
+            <!-- Logout Modal-->
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Odlazite?</h5>
+                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Odustani</button>
+                            <a class="btn btn-primary" href="~/Login/odjaviSe" id="odjava">Odjavi se</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container main-content">
+                @RenderBody()
+             
+                
+            </div>
+        </div>
+    }
+    @if (Autentifikacija.KorisnikSesija == null)
+    {
+        @RenderBody()
+    }
+    <!-- Bootstrap core JavaScript-->
+    <script src="~/Template/vendor/jquery/jquery.min.js"></script>
+    <script src="~/Template/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="~/Template/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <!-- Page level plugin JavaScript-->
+    <script src="~/Template/vendor/chart.js/Chart.min.js"></script>
+    <script src="~/Template/vendor/datatables/jquery.dataTables.js"></script>
+    <script src="~/Template/vendor/datatables/dataTables.bootstrap4.js"></script>
+    <!-- Custom scripts for all pages-->
+    <script src="~/Template/js/sb-admin.min.js"></script>
+    <!-- Custom scripts for this page-->
+    <script src="~/Template/js/sb-admin-datatables.min.js"></script>
+    <script src="~/Template/js/sb-admin-charts.min.js"></script>
+   
+</body>
+        </html>

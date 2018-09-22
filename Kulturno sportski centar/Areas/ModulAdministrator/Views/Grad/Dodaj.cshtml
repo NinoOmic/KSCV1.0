@@ -1,0 +1,42 @@
+﻿@using WebApplication2.Models;
+@{
+    //Layout = null;
+   
+    ViewBag.Title = "Grad";
+}
+
+
+@model Kulturno_sportski_centar.Areas.ModulAdministrator.Models.GradEditViewModel
+
+<h1>Dodaj/Uredi grad</h1>
+
+
+@using (Html.BeginForm("Spremi", "Grad"))
+
+{
+    @Html.HiddenFor(model=>model.Id)
+    <div class="form-group">
+        <label>Naziv</label>
+        @Html.TextBoxFor(model => model.Naziv, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Naziv)
+    </div>
+    <div class="form-group">
+        <label>Oznaka</label>
+        @Html.TextBoxFor(model => model.Oznaka, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Oznaka)
+    </div>
+
+    <div class="form-group">
+        <label>Postanski broj</label>
+        @Html.TextBoxFor(model => model.PostanskiBroj, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.PostanskiBroj)
+    </div>
+
+    <div class="form-group">
+        <label>Regija</label>
+        @Html.DropDownListFor(model => model.RegijaId, Model.Regije, new { @class = "form-control" })
+
+    </div>
+    <input type="submit" value="Spremi" class="btn btn-success" />
+    @Html.ValidationSummary();
+}

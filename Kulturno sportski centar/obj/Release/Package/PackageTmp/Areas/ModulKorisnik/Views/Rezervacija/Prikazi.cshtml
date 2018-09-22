@@ -1,0 +1,41 @@
+﻿@using Kulturno_sportski_centar.Areas.ModulKorisnik.Models;
+@{
+    ViewBag.Title = "Prikazi";
+}
+
+@model Kulturno_sportski_centar.Areas.ModulKorisnik.Models.RezervacijaPrikaziViewModel
+<h1>Pregled rezervacija</h1>
+
+
+<table class="table table-bordered table-hover ">
+    <thead>
+        <tr>
+            <td>Id</td>
+            <td>Datum</td>
+            <td>Pocetak</td>
+            <td>Kraj</td>
+            <td>Sala</td>
+            <td>Korisnik</td>
+            <td>Zavrsena</td>
+            <td>Akcija</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (RezervacijaPrikaziViewModel.RezervacijaInfo x in Model.Rezervacije)
+        {
+            <tr>
+                <td>@x.Id</td>
+                <td>@x.Datum.ToLongDateString()</td>
+                <td>@x.Pocetak  </td>
+                <td>@x.Kraj</td>
+                <td>@x.Sala</td>
+                <td>@x.Korisnik</td>
+                <td>@(x.Zavrsena == false ? "NE" : "DA")</td>
+                <td><a href="/ModulKorisnik/Rezervacija/Obrisi/?Id=@x.Id" class="btn btn-danger">Obrisi</a></td>
+
+            </tr>
+        }
+
+    </tbody>
+</table>
+<a href="~/ModulZaposlenik/Termin/Prikazi" class="btn btn-info">Kreiraj rezervaciju</a> 

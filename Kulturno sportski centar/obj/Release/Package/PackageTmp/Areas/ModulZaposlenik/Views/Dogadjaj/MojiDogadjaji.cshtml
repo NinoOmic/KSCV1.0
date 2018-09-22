@@ -1,0 +1,55 @@
+﻿@using Kulturno_sportski_centar.Helper
+@using Kulturno_sportski_centar.Models
+@{
+    //Layout = null;
+    ViewBag.Title = "Dogadjaji";
+}
+
+@model Kulturno_sportski_centar.Areas.ModulZaposlenik.Models.PrikaziDogadjajeVM
+
+<div>
+
+    <h1 class="card-title">Događaji</h1>
+    <table class="table table-striped">
+
+        <thead>
+            <tr>
+                <td>Događaj</td>
+                <td>Datum održavanja</td>
+                <td>Vrijeme održavanja</td>
+                <td>Sala</td>
+                <td>Cijena ulaza</td>
+                <td>Broj sjedišta</td>
+                <td>Organizator</td>
+                <td>Akcija</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var d in Model.Dogadjaji)
+            {
+                <tr>
+
+                    <td>@d.VrstaDogadjaja</td>
+                    <td>@d.Datum.ToShortDateString()</td>
+                    <td>@d.Datum.Hour.ToString() : @d.Datum.Minute.ToString()</td>
+                    <td>@d.NazivSale</td>
+                    <td>@d.CijenaUlaza KM</td>
+                    <td>@d.BrojSjedista</td>
+                    <td>@d.Organizator</td>
+
+                    <td>
+
+                        <a href="/ModulZaposlenik/Dogadjaj/Uredi?DogadjajId=@d.DogadjajId" class="btn btn-info">Uredi</a>
+                        <a href="/ModulZaposlenik/Dogadjaj/Obrisi?DogadjajId=@d.DogadjajId" class="btn btn-danger">Obriši</a>
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div>
+        <a href="/ModulZaposlenik/Dogadjaj/Prikazi" class="btn btn-outline-dark">Ostali događaji</a>
+    </div>
+
+</div>
+

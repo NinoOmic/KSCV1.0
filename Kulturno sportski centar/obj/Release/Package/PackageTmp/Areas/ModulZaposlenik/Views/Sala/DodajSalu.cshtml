@@ -1,0 +1,52 @@
+﻿
+@{
+    //Layout = null;
+    ViewBag.Title = "Nova sala";
+}
+@model Kulturno_sportski_centar.Areas.ModulZaposlenik.Models.DodajSaluVM
+<h2>Dodavanje nove sale</h2>
+
+
+<hr />
+@using (Html.BeginForm("Snimi", "Sala"))
+{
+    @Html.HiddenFor(model=>model.Id)
+<div>
+    <table class="table table-striped">
+        <tr>
+            <td><label>Naziv sale : </label></td>
+            <td>@Html.TextBoxFor(model => model.Naziv)</td>
+            <td>@Html.ValidationMessageFor(model => model.Naziv)</td>
+        </tr>
+        <tr>
+            <td><label>Vrsta sale : </label></td>
+            <td>@Html.TextBoxFor(model => model.Vrsta)</td>
+            <td>@Html.ValidationMessageFor(model => model.Vrsta)</td>
+        </tr>
+        <tr>
+            <td><label>Opis sale : </label></td>
+            <td>@Html.TextBoxFor(model => model.Opis)</td>
+            <td>@Html.ValidationMessageFor(model => model.Opis)</td>
+        </tr>
+        <tr>
+            <td><label>Kapacitet sale : </label></td>
+            <td>@Html.TextBoxFor(model => model.Kapacitet)</td>
+            <td>@Html.ValidationMessageFor(model => model.Kapacitet)</td>
+        </tr>
+        <tr>
+            <td><label>Kojem KSC-u pripada : </label></td>
+            <td>@Html.DropDownListFor(model => model.KulturnoSportskiCentarId, Model.KulturnoSportskiCentri)</td>
+            <td>@Html.ValidationMessageFor(model => model.KulturnoSportskiCentarId)</td>
+        </tr>
+        <tr>
+            <td><label>Broj sjedišta : </label></td>
+            <td>@Html.TextBoxFor(model => model.BrojSjedista)</td>
+            <td>@Html.ValidationMessageFor(model => model.BrojSjedista)</td>
+        </tr>
+    </table>
+</div>
+<hr />
+    @Html.ValidationSummary()
+    <hr />
+    <input type="submit" value="Snimi" class="btn btn-success" />
+}
