@@ -96,18 +96,31 @@
                 @if (Autentifikacija.KorisnikSesija.UlogaNaSistemuId != 2)
                 {
                     <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
-                        <a class="nav-link" href="@Url.Action("Index", "Korisnik", new { Area = "ModulKorisnik" })">
+                        <a class="nav-link" href="@Url.Action("Prikazi", "Izvjestaj", new { Area = "ModulZaposlenik" })">
                             <i class="fa fa-file-archive-o"></i>
-                            <span class="nav-link-text">Izvještaji(potrebno implementirati)</span>
+                            <span class="nav-link-text">Izvještaji</span>
                         </a>
                     </li>
                 }
-                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
-                    <a class="nav-link" href="@Url.Action("Prikazi", "RezervacijaZaDogadjaj", new { Area = "ModulKorisnik" })">
-                        <i class="fa fa-ticket"></i>
-                        <span class="nav-link-text">Karte</span>
-                    </a>
-                </li>
+                @if (Autentifikacija.KorisnikSesija.UlogaNaSistemuId != 2)
+                {
+                    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
+                        <a class="nav-link" href="@Url.Action("PrikaziSveKarte", "RezervacijaZaDogadjaj", new { Area = "ModulKorisnik" })">
+                            <i class="fa fa-ticket"></i>
+                            <span class="nav-link-text">Karte</span>
+                        </a>
+                    </li>
+                }
+                else
+                {
+                    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
+                        <a class="nav-link" href="@Url.Action("Prikazi", "RezervacijaZaDogadjaj", new { Area = "ModulKorisnik" })">
+                            <i class="fa fa-ticket"></i>
+                            <span class="nav-link-text">Karte</span>
+                        </a>
+                    </li>
+                }
+
                 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Example Pages">
                     <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseExamplePages" data-parent="#exampleAccordion">
                         <i class="fa fa-globe"></i>

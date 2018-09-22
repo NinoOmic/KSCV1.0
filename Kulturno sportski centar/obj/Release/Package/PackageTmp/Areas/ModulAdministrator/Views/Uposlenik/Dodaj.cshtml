@@ -1,6 +1,10 @@
 ﻿@{
     // Layout = null;
     ViewBag.Title = "Novi uposlenik";
+    string error = (string)ViewData["error"];
+    string error1 = (string)ViewData["error1"];
+    string error2 = (string)ViewData["error2"];
+    string error3 = (string)ViewData["error3"];
 }
 @model Kulturno_sportski_centar.Areas.ModulAdministrator.Models.DodajUposlenikaVM
 
@@ -53,6 +57,10 @@
                         <td>
                             @Html.TextBoxFor(model => model.KorisnckoIme)
                             @Html.ValidationMessageFor(model => model.KorisnckoIme)
+                            @if (error2 != null)
+                            {
+                                <label class="text-danger">@error2</label>
+                            }
                         </td>
 
                     </tr>
@@ -66,6 +74,10 @@
                     <tr>
                         <td><label for="exampleInputGrad">Grad</label></td>
                         <td>@Html.DropDownListFor(model => model.GradId, Model.Gradovi)</td>
+                        @if (error != null)
+                        {
+                            <td><label class="text-danger">@error</label></td>
+                        }
                     </tr>
                     <tr>
                         <td><label for="exampleInputAdress">Adresa</label></td>
@@ -76,6 +88,10 @@
                         <td>
                             @Html.TextBoxFor(model => model.Email)
                             @Html.ValidationMessageFor(model => model.Email)
+                            @if (error3 != null)
+                            {
+                                <label class="text-danger">@error3</label>
+                            }
                         </td>
                     </tr>
                     <tr>
@@ -92,7 +108,11 @@
                     </tr>
                     <tr>
                         <td><label for="exampleInputRadnoMjesto">Radno mjesto</label></td>
-                        <td>@Html.DropDownListFor(model=>model.RadnoMjestoId, Model.RadnaMjesta)</td>
+                        <td>@Html.DropDownListFor(model => model.RadnoMjestoId, Model.RadnaMjesta)</td>
+                        @if (error1 != null)
+                        {
+                            <td><label class="text-danger">@error1</label></td>
+                        }
                     </tr>
                 </table>
                 <hr />

@@ -34,12 +34,14 @@
                         <td><label for="exampleInputLastName">Datum zapošljenja</label></td>
                         <td>
                             @Html.TextBoxFor(model => model.DatumZaposljenja)
+                            @Html.ValidationMessageFor(model=>model.DatumZaposljenja)
                         </td>
                     </tr>
                     <tr>
                         <td><label for="exampleInputDate">Radno mjesto</label></td>
                         <td>
                             @Html.DropDownListFor(model => model.RadnoMjestoId, Model.RadnaMjesta)
+                            @Html.ValidationMessageFor(model=>model.RadnoMjestoId)
                         </td>
                     </tr>
                     

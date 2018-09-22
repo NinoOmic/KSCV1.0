@@ -1,18 +1,18 @@
 ﻿@using Kulturno_sportski_centar.Helper
 @{
     //Layout = null;
-    ViewBag.Title = "Vase rezervacije za događaje";
+    ViewBag.Title = "Rezervacije za događaje";
 }
 @model Kulturno_sportski_centar.Areas.ModulKorisnik.Models.PrikaziKarteVM
 
-<h1 class="card-title">Vaše rezervacije za događaje</h1>
+<h1 class="card-title">Rezervacije za događaje</h1>
 
 <table class="table table-striped">
 
     <thead>
         <tr>
             <td>Id karte</td>
-            @if (Autentifikacija.KorisnikSesija.UlogaNaSistemuId == 1)
+            @if (Autentifikacija.KorisnikSesija.UlogaNaSistemuId == 1 || Autentifikacija.KorisnikSesija.UlogaNaSistemuId == 3)
             {
                 <td>Vlasnik karte</td>
             }
@@ -26,7 +26,7 @@
         {
             <tr>
                 <td>@k.Id</td>
-                @if (Autentifikacija.KorisnikSesija.UlogaNaSistemuId == 1)
+                @if (Autentifikacija.KorisnikSesija.UlogaNaSistemuId == 1 || Autentifikacija.KorisnikSesija.UlogaNaSistemuId == 3)
                 {
                     <td>@k.Korisnik</td>
                 }
@@ -40,7 +40,7 @@
     </tbody>
 
 </table>
-@if (Autentifikacija.KorisnikSesija.UlogaNaSistemuId == 1)
+@if (Autentifikacija.KorisnikSesija.UlogaNaSistemuId == 1 || Autentifikacija.KorisnikSesija.UlogaNaSistemuId == 3)
 {
     <a href="/ModulKorisnik/RezervacijaZaDogadjaj/Prikazi" class="btn btn-info">Vaše karte</a>
 }

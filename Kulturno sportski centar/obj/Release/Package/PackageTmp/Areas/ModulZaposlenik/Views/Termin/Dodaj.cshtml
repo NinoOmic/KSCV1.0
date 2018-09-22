@@ -1,9 +1,8 @@
 ﻿@using WebApplication2.Models;
 @{
     //Layout = null;
-   
-    ViewBag.Title = "Termin";
 
+    ViewBag.Title = "Termin";
 }
 @model Kulturno_sportski_centar.Areas.ModulZaposlenik.Models.TerminEditViewModel
 
@@ -21,7 +20,6 @@
         @Html.TextBoxFor(model => model.Datum, new {@class="form-control"})
         @Html.ValidationMessageFor(model=>model.Datum)
     </div>
-
 @Html.ValidationSummary()
     <input type="submit" value="Spremi" class="btn btn-success" />
 }

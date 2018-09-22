@@ -5,6 +5,7 @@
     // Layout = null;
 
     ViewBag.Title = "Korisnik";
+    string error = (string)ViewData["error"];
 }
 
 <h2>Prikaz korisnika</h2>
@@ -24,7 +25,6 @@
             <td>Prezime</td>
             <td>Korisnicko ime</td>
             <td>Uloga</td>
-
             <td>Akcija</td>
         </tr>
     </thead>
@@ -45,9 +45,13 @@
                     <td>
                         <a href="~/ModulKorisnik/Korisnik/Detalji/?Id=@a.Id" class="btn btn-info">Detaljno</a>
                         <a href="~/ModulKorisnik/Korisnik/Uredi/?Id=@a.Id" class="btn btn-primary">Uredi</a>
-                        @if (a.Id != Autentifikacija.KorisnikSesija.Id)
+                        @if (a.Id != Autentifikacija.KorisnikSesija.Id && a.UlogaNaSistemu == "Korisnik")
                         {
-                        <a href="~/ModulKorisnik/Korisnik/Obrisi/?Id=@a.Id" class="btn btn-danger">Obrisi</a>
+                            <a href="~/ModulKorisnik/Korisnik/Obrisi/?Id=@a.Id" class="btn btn-danger">Obrisi</a>
+                            if (error != null)
+                            {
+                                <label class="text-danger">@error</label>
+                            }
                         }
                     </td>
                 }

@@ -20,7 +20,7 @@
                 <td>Sala</td>
                 <td>Cijena ulaza</td>
                 <td>Broj sjedišta</td>
-                @if (Autentifikacija.KorisnikSesija.UlogaNaSistemuId == 1)
+                @if (Autentifikacija.KorisnikSesija.UlogaNaSistemuId == 1 || Autentifikacija.KorisnikSesija.UlogaNaSistemuId == 3)
                 {
                     <td>Organizator</td>
                 }
@@ -34,11 +34,11 @@
 
                     <td>@d.VrstaDogadjaja</td>
                     <td>@d.Datum.ToShortDateString()</td>
-                    <td>@d.Datum.Hour.ToString() : @d.Datum.Minute.ToString()</td>
+                    <td>@d.VrijemePocetka</td>
                     <td>@d.NazivSale</td>
                     <td>@d.CijenaUlaza KM</td>
                     <td>@d.BrojSjedista</td>
-                    @if (Autentifikacija.KorisnikSesija.UlogaNaSistemuId == 1)
+                    @if (Autentifikacija.KorisnikSesija.UlogaNaSistemuId == 1 || Autentifikacija.KorisnikSesija.UlogaNaSistemuId == 3)
                     {
                         <td>@d.Organizator</td>
                     }

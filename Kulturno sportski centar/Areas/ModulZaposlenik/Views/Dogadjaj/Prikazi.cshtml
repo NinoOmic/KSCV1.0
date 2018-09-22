@@ -49,7 +49,7 @@
                             <a href="/ModulZaposlenik/Dogadjaj/Obrisi?DogadjajId=@d.DogadjajId" class="btn btn-danger">Obriši</a>
                         }
 
-                        @if (d.BrojSjedista > 0 && d.Datum<=DateTime.Now)
+                        @if (d.BrojSjedista > 0 && (d.Datum.Year>=DateTime.Now.Year && d.Datum.Month <= DateTime.Now.Month && d.Datum.Day <= DateTime.Now.Day))
                         {
                             <a href="/ModulKorisnik/RezervacijaZaDogadjaj/Dodaj?DogadjajId=@d.DogadjajId" class="btn btn-dark">Rezerviši kartu</a>
                         }

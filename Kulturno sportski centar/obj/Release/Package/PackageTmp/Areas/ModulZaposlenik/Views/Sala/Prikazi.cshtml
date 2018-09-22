@@ -3,6 +3,7 @@
 @{
     //Layout = null;
     List<Sala> sale = (List<Sala>)ViewData["Sala"];
+    string error = (string)ViewData["error"];
  }
 @{
     ViewBag.Title = "Sala";
@@ -38,7 +39,10 @@
                 @if (Autentifikacija.KorisnikSesija.UlogaNaSistemuId == 1)
                 {
                     <a href="/ModulZaposlenik/Sala/Obrisi?SalaId=@x.Id" class="btn btn-danger">Obrisi</a>
-
+                    if (error != null)
+                    {
+                        <label class="text-danger">@error</label>
+                    }
                     <a href="/ModulZaposlenik/Sala/Uredi?SalaId=@x.Id" class="btn btn-primary">Uredi</a>
                 }
                 </td>

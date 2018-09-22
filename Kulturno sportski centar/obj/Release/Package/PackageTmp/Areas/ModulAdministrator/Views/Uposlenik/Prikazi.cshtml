@@ -23,7 +23,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach(var u in Model.Uposlenici)
+            @foreach (var u in Model.Uposlenici)
             {
                 <tr>
                     <td>@u.ImePrezime</td>
@@ -42,7 +42,8 @@
     </table>
 
     <a href="/ModulAdministrator/Uposlenik/Dodaj" class="btn btn-outline-success">Novi uposlenik</a>
-    <a href="/ModulAdministrator/RadnoMjesto/Prikazi" class="btn btn-info">Radna mjesta</a> 
+    <a href="/ModulAdministrator/RadnoMjesto/Prikazi" class="btn btn-info">Radna mjesta</a>
+    <a href="/ModulAdministrator/Uloge/Prikazi" class="btn btn-info">Uloge na sistemu</a>
 
 </div>
 

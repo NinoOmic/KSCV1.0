@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <parameters>
-  <parameter name="MojString-Web.config Connection String" description="MojString Connection String used in web.config by the application to access the database." defaultValue="Data Source=localhost; Initial Catalog=KSC16.09.; Integrated Security=true; " tags="SqlConnectionString">
+  <parameter name="MojString-Web.config Connection String" description="MojString Connection String used in web.config by the application to access the database." defaultValue="Data Source=app.fit.ba, 1433;Initial Catalog=KSC_V1.0; Integrated Security=false;User ID=adminMirza;Password=Fitovac321.;" tags="SqlConnectionString">
     <parameterEntry kind="XmlFile" scope="C:\\Users\\Gittara\\Desktop\\RS1\ Seminarski\\Implementacija\\Seminarski-RS1\\Seminarski\ RS1\\Kulturno\ sportski\ centar\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='MojString']/@connectionString" />
   </parameter>
 </parameters>

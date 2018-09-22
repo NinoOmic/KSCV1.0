@@ -1,0 +1,38 @@
+﻿
+@{
+    //Layout = null;
+    ViewBag.Title = "Uloge na sistemu";
+}
+@model Kulturno_sportski_centar.Areas.ModulAdministrator.Models.PrikaziUlogeVM
+
+<h2 class="card-title">Uloge na sistemu</h2>
+
+<table class="table table-striped">
+
+    <thead>
+        <tr>
+            <td>Uloga ID</td>
+            <td>Naziv uloge</td>
+            <td>Akcija</td>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach(var u in Model.Uloge)
+        {
+            <tr>
+                <td>@u.Id</td>
+                <td>@u.Uloga</td>
+                <td>
+                    <a href="/ModulAdministrator/Uloge/Uredi?UlogaId=@u.Id" class="btn btn-info">Uredi</a>
+                </td>
+            </tr>
+        }
+
+    </tbody>
+
+</table>
+
+<div>
+    <a href="/ModulAdministrator/Uloge/Dodaj" class="btn btn-success">Nova uloga</a>
+</div>
